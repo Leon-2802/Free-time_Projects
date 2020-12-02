@@ -1,0 +1,22 @@
+body {
+    background-color: blanchedalmond;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-box {
+    width: 650px;
+    height: 650px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.kachel {
+    color: gray;
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+}
