@@ -1,4 +1,15 @@
-var switchBool: boolean = false;
+//HTML-Elements:
+const playerOneX: HTMLElement = document.getElementById("1x");
+const playerOneO: HTMLElement = document.getElementById("1o");
+const playerTwoX: HTMLElement = document.getElementById("2x");
+const playerTwoO: HTMLElement = document.getElementById("2o");
+
+//Bools:
+let symbolSwitchBool: boolean = false;
+let XoBool: boolean = false;
+let Case1or2Bool: boolean = false;
+
+//
 
 document.querySelector('#kachel1').addEventListener("click", function() {
     changeOpacity('#x1', '#o1');
@@ -35,23 +46,61 @@ document.querySelector('#restart').addEventListener("click", function() {
 
 //Select X/O:
 document.querySelector('.x-button').addEventListener("click", function() {
-    switchBool = false;
+    symbolSwitchBool = false;
+    XoBool = true;
+    Case1or2Bool = true;
+    showXO();
+    hideXO(playerOneO, playerTwoX);
 });
 document.querySelector('.o-button').addEventListener("click", function() {
-    switchBool = true;
+    symbolSwitchBool = true;
+    XoBool = true;
+    Case1or2Bool = false;
+    showXO();
+    hideXO(playerOneX, playerTwoO);
+});
+document.querySelector(".x-button2").addEventListener("click", function() {
+    symbolSwitchBool = true;
+    XoBool = true;
+    Case1or2Bool = false;
+    showXO();
+    hideXO(playerOneX, playerTwoO);
+});
+document.querySelector(".o-button2").addEventListener("click", function() {
+    symbolSwitchBool = false;
+    XoBool = true;
+    Case1or2Bool = true;
+    showXO();
+    hideXO(playerOneO, playerTwoX);
 });
 
 function changeOpacity(x: string, y: string) {
-    if (switchBool == false) {
+    if (symbolSwitchBool == false) {
         document.querySelector(x).setAttribute('style', 'opacity: ' + 100 + '%');
-        switchBool = true;
+        symbolSwitchBool = true;
     } 
-    else if (switchBool == true) {
+    else if (symbolSwitchBool == true) {
         document.querySelector(y).setAttribute('style', 'opacity: ' + 100 + '%');
-        switchBool = false;
+        symbolSwitchBool = false;
     }
 }
 
 function restart() {
     window.location.reload(false);
+}
+
+function showXO() {
+    if (XoBool == true && Case1or2Bool == true) {
+        playerOneX.classList.remove("hidden");
+        playerTwoO.classList.remove("hidden");
+    }
+    else if (XoBool == true && Case1or2Bool == false) {
+        playerOneO.classList.remove("hidden");
+        playerTwoX.classList.remove("hidden");
+    }
+}
+
+function hideXO(firstLetter: HTMLElement, secondLetter: HTMLElement) {
+    firstLetter.classList.add("hidden");
+    secondLetter.classList.add("hidden");
 }

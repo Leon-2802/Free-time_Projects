@@ -1,4 +1,13 @@
-var switchBool = false;
+//HTML-Elements:
+var playerOneX = document.getElementById("1x");
+var playerOneO = document.getElementById("1o");
+var playerTwoX = document.getElementById("2x");
+var playerTwoO = document.getElementById("2o");
+//Bools:
+var symbolSwitchBool = false;
+var XoBool = false;
+var Case1or2Bool = false;
+//
 document.querySelector('#kachel1').addEventListener("click", function () {
     changeOpacity('#x1', '#o1');
 });
@@ -32,22 +41,58 @@ document.querySelector('#restart').addEventListener("click", function () {
 });
 //Select X/O:
 document.querySelector('.x-button').addEventListener("click", function () {
-    switchBool = false;
+    symbolSwitchBool = false;
+    XoBool = true;
+    Case1or2Bool = true;
+    showXO();
+    hideXO(playerOneO, playerTwoX);
 });
 document.querySelector('.o-button').addEventListener("click", function () {
-    switchBool = true;
+    symbolSwitchBool = true;
+    XoBool = true;
+    Case1or2Bool = false;
+    showXO();
+    hideXO(playerOneX, playerTwoO);
+});
+document.querySelector(".x-button2").addEventListener("click", function () {
+    symbolSwitchBool = true;
+    XoBool = true;
+    Case1or2Bool = false;
+    showXO();
+    hideXO(playerOneX, playerTwoO);
+});
+document.querySelector(".o-button2").addEventListener("click", function () {
+    symbolSwitchBool = false;
+    XoBool = true;
+    Case1or2Bool = true;
+    showXO();
+    hideXO(playerOneO, playerTwoX);
 });
 function changeOpacity(x, y) {
-    if (switchBool == false) {
+    if (symbolSwitchBool == false) {
         document.querySelector(x).setAttribute('style', 'opacity: ' + 100 + '%');
-        switchBool = true;
+        symbolSwitchBool = true;
     }
-    else if (switchBool == true) {
+    else if (symbolSwitchBool == true) {
         document.querySelector(y).setAttribute('style', 'opacity: ' + 100 + '%');
-        switchBool = false;
+        symbolSwitchBool = false;
     }
 }
 function restart() {
     window.location.reload(false);
+}
+function showXO() {
+    if (XoBool == true && Case1or2Bool == true) {
+        playerOneX.classList.remove("hidden");
+        playerTwoO.classList.remove("hidden");
+    }
+    else if (XoBool == true && Case1or2Bool == false) {
+        playerOneO.classList.remove("hidden");
+        playerTwoX.classList.remove("hidden");
+    }
+}
+function hideXO(firstLetter, secondLetter) {
+    firstLetter.classList.add("hidden");
+    secondLetter.classList.add("hidden");
 }
 //# sourceMappingURL=tic-tac.js.map
