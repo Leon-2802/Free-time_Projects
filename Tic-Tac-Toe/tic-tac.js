@@ -7,33 +7,43 @@ var playerTwoO = document.getElementById("2o");
 var symbolSwitchBool = false;
 var XoBool = false;
 var Case1or2Bool = false;
-//
+//Check-if-already-checked-array:
+var checkArray = [];
+checkArray[1] = true;
+checkArray[2] = true;
+checkArray[3] = true;
+checkArray[4] = true;
+checkArray[5] = true;
+checkArray[6] = true;
+checkArray[7] = true;
+checkArray[8] = true;
+checkArray[9] = true;
 document.querySelector('#kachel1').addEventListener("click", function () {
-    changeOpacity('#x1', '#o1');
+    changeOpacity('#x1', '#o1', 1);
 });
 document.querySelector('#kachel2').addEventListener("click", function () {
-    changeOpacity('#x2', '#o2');
+    changeOpacity('#x2', '#o2', 2);
 });
 document.querySelector('#kachel3').addEventListener("click", function () {
-    changeOpacity('#x3', '#o3');
+    changeOpacity('#x3', '#o3', 3);
 });
 document.querySelector('#kachel4').addEventListener("click", function () {
-    changeOpacity('#x4', '#o4');
+    changeOpacity('#x4', '#o4', 4);
 });
 document.querySelector('#kachel5').addEventListener("click", function () {
-    changeOpacity('#x5', '#o5');
+    changeOpacity('#x5', '#o5', 5);
 });
 document.querySelector('#kachel6').addEventListener("click", function () {
-    changeOpacity('#x6', '#o6');
+    changeOpacity('#x6', '#o6', 6);
 });
 document.querySelector('#kachel7').addEventListener("click", function () {
-    changeOpacity('#x7', '#o7');
+    changeOpacity('#x7', '#o7', 7);
 });
 document.querySelector('#kachel8').addEventListener("click", function () {
-    changeOpacity('#x8', '#o8');
+    changeOpacity('#x8', '#o8', 8);
 });
 document.querySelector('#kachel9').addEventListener("click", function () {
-    changeOpacity('#x9', '#o9');
+    changeOpacity('#x9', '#o9', 9);
 });
 //Restart
 document.querySelector('#restart').addEventListener("click", function () {
@@ -68,14 +78,16 @@ document.querySelector(".o-button2").addEventListener("click", function () {
     showXO();
     hideXO(playerOneO, playerTwoX);
 });
-function changeOpacity(x, y) {
-    if (symbolSwitchBool == false) {
+function changeOpacity(x, y, i) {
+    if (symbolSwitchBool == false && checkArray[i] == true) {
         document.querySelector(x).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = true;
+        checkArray[i] = false;
     }
-    else if (symbolSwitchBool == true) {
+    else if (symbolSwitchBool == true && checkArray[i] == true) {
         document.querySelector(y).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = false;
+        checkArray[i] = false;
     }
 }
 function restart() {
