@@ -1,12 +1,10 @@
-//HTML-Elements:
-var playerOneX = document.getElementById("1x");
-var playerOneO = document.getElementById("1o");
-var playerTwoX = document.getElementById("2x");
-var playerTwoO = document.getElementById("2o");
+//Player 1 und Player 2:
+var player1 = document.getElementById("player1");
+var player2 = document.getElementById("player2");
 //Bools:
 var symbolSwitchBool = false;
-var XoBool = false;
-var Case1or2Bool = false;
+var whoStarts = true;
+var preventTheOther = true;
 //Check-if-already-checked-array:
 var checkArray = [];
 checkArray[1] = true;
@@ -49,62 +47,59 @@ document.querySelector('#kachel9').addEventListener("click", function () {
 document.querySelector('#restart').addEventListener("click", function () {
     restart();
 });
-//Select X/O:
-document.querySelector('.x-button').addEventListener("click", function () {
-    symbolSwitchBool = false;
-    XoBool = true;
-    Case1or2Bool = true;
-    showXO();
-    hideXO(playerOneO, playerTwoX);
-});
-document.querySelector('.o-button').addEventListener("click", function () {
-    symbolSwitchBool = true;
-    XoBool = true;
-    Case1or2Bool = false;
-    showXO();
-    hideXO(playerOneX, playerTwoO);
-});
-document.querySelector(".x-button2").addEventListener("click", function () {
-    symbolSwitchBool = true;
-    XoBool = true;
-    Case1or2Bool = false;
-    showXO();
-    hideXO(playerOneX, playerTwoO);
-});
-document.querySelector(".o-button2").addEventListener("click", function () {
-    symbolSwitchBool = false;
-    XoBool = true;
-    Case1or2Bool = true;
-    showXO();
-    hideXO(playerOneO, playerTwoX);
-});
-function changeOpacity(x, y, i) {
+function changeOpacity(x, o, i) {
     if (symbolSwitchBool == false && checkArray[i] == true) {
         document.querySelector(x).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = true;
         checkArray[i] = false;
     }
     else if (symbolSwitchBool == true && checkArray[i] == true) {
-        document.querySelector(y).setAttribute('style', 'opacity: ' + 100 + '%');
+        document.querySelector(o).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = false;
         checkArray[i] = false;
     }
 }
+var index;
 function restart() {
-    window.location.reload(false);
-}
-function showXO() {
-    if (XoBool == true && Case1or2Bool == true) {
-        playerOneX.classList.remove("hidden");
-        playerTwoO.classList.remove("hidden");
+    // Opacity wieder Null:
+    clearOpacity("#x1", "#o1");
+    clearOpacity("#x2", "#o2");
+    clearOpacity("#x3", "#o3");
+    clearOpacity("#x4", "#o4");
+    clearOpacity("#x5", "#o5");
+    clearOpacity("#x6", "#o6");
+    clearOpacity("#x7", "#o7");
+    clearOpacity("#x8", "#o8");
+    clearOpacity("#x9", "#o9");
+    //checkArray zurücksetzen:
+    for (index = 1; index <= 9; index++) {
+        checkArray[index] = true;
     }
-    else if (XoBool == true && Case1or2Bool == false) {
-        playerOneO.classList.remove("hidden");
-        playerTwoX.classList.remove("hidden");
+    //Starter wechseln:
+    if (whoStarts == true) {
+        whoStarts = false;
+    }
+    else if (preventTheOther == false) {
+        whoStarts = true;
+    }
+    changeStarter();
+}
+function changeStarter() {
+    if (whoStarts == true) {
+        symbolSwitchBool = false;
+        player1.setAttribute("style", "text-decoration: " + "underline");
+        player2.setAttribute("style", "text-decoration: " + "none");
+        preventTheOther = true;
+    }
+    else if (whoStarts == false) {
+        symbolSwitchBool = true;
+        player1.setAttribute("style", "text-decoration: " + "none");
+        player2.setAttribute("style", "text-decoration: " + "underline");
+        preventTheOther = false;
     }
 }
-function hideXO(firstLetter, secondLetter) {
-    firstLetter.classList.add("hidden");
-    secondLetter.classList.add("hidden");
+function clearOpacity(x, o) {
+    document.querySelector(x).setAttribute("style", "opacity: " + 0);
+    document.querySelector(o).setAttribute("style", "opacity: " + 0);
 }
 //# sourceMappingURL=tic-tac.js.map

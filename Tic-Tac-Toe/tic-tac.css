@@ -41,18 +41,11 @@ body {
     cursor: pointer;
 }
 
-.x-button:hover {
-    cursor: pointer;
+#player1 {
+    color: #66ff66;
+    text-decoration: underline;
 }
-.x-button2:hover {
-    cursor: pointer;
-}
-.o-button:hover {
-    cursor: pointer;
-}
-.o-button2:hover {
-    cursor: pointer;
-}
-.hidden {
-    display: none;
+#player2 {
+    color: red;
+    text-decoration: none;
 }

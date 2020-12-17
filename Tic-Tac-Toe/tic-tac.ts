@@ -1,16 +1,13 @@
-//HTML-Elements:
-const playerOneX: HTMLElement = document.getElementById("1x");
-const playerOneO: HTMLElement = document.getElementById("1o");
-const playerTwoX: HTMLElement = document.getElementById("2x");
-const playerTwoO: HTMLElement = document.getElementById("2o");
-
+//Player 1 und Player 2:
+const player1:HTMLElement = document.getElementById("player1");
+const player2:HTMLElement = document.getElementById("player2");
 //Bools:
 let symbolSwitchBool: boolean = false;
-let XoBool: boolean = false;
-let Case1or2Bool: boolean = false;
+let whoStarts: boolean = true;
+let preventTheOther: boolean = true;
 
 //Check-if-already-checked-array:
-let checkArray: boolean[] = [];
+var checkArray: boolean[] = [];
 checkArray[1] = true;
 checkArray[2] = true;
 checkArray[3] = true;
@@ -54,65 +51,63 @@ document.querySelector('#restart').addEventListener("click", function() {
     restart();
 });
 
-//Select X/O:
-document.querySelector('.x-button').addEventListener("click", function() {
-    symbolSwitchBool = false;
-    XoBool = true;
-    Case1or2Bool = true;
-    showXO();
-    hideXO(playerOneO, playerTwoX);
-});
-document.querySelector('.o-button').addEventListener("click", function() {
-    symbolSwitchBool = true;
-    XoBool = true;
-    Case1or2Bool = false;
-    showXO();
-    hideXO(playerOneX, playerTwoO);
-});
-document.querySelector(".x-button2").addEventListener("click", function() {
-    symbolSwitchBool = true;
-    XoBool = true;
-    Case1or2Bool = false;
-    showXO();
-    hideXO(playerOneX, playerTwoO);
-});
-document.querySelector(".o-button2").addEventListener("click", function() {
-    symbolSwitchBool = false;
-    XoBool = true;
-    Case1or2Bool = true;
-    showXO();
-    hideXO(playerOneO, playerTwoX);
-});
-
-function changeOpacity(x: string, y: string, i: number) {
+function changeOpacity(x: string, o: string, i: number): void {
     if (symbolSwitchBool == false && checkArray[i] == true) {
         document.querySelector(x).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = true;
         checkArray[i] = false;
     } 
     else if (symbolSwitchBool == true && checkArray[i] == true) {
-        document.querySelector(y).setAttribute('style', 'opacity: ' + 100 + '%');
+        document.querySelector(o).setAttribute('style', 'opacity: ' + 100 + '%');
         symbolSwitchBool = false;
         checkArray[i] = false;
     }
 }
 
-function restart() {
-    window.location.reload(false);
+var index: number;
+function restart(): void {
+    // Opacity wieder Null:
+    clearOpacity("#x1", "#o1");
+    clearOpacity("#x2", "#o2");
+    clearOpacity("#x3", "#o3");
+    clearOpacity("#x4", "#o4");
+    clearOpacity("#x5", "#o5");
+    clearOpacity("#x6", "#o6");
+    clearOpacity("#x7", "#o7");
+    clearOpacity("#x8", "#o8");
+    clearOpacity("#x9", "#o9");
+
+    //checkArray zurücksetzen:
+    for(index = 1; index <= 9; index++) {
+    checkArray[index] = true;
+    }
+
+    //Starter wechseln:
+    if (whoStarts == true) {
+        whoStarts = false;
+    }
+    else if (preventTheOther == false) {
+        whoStarts = true;
+    }
+    changeStarter();
 }
 
-function showXO() {
-    if (XoBool == true && Case1or2Bool == true) {
-        playerOneX.classList.remove("hidden");
-        playerTwoO.classList.remove("hidden");
+function changeStarter(): void {
+    if(whoStarts == true) {
+        symbolSwitchBool = false;
+        player1.setAttribute("style", "text-decoration: " + "underline");
+        player2.setAttribute("style", "text-decoration: " + "none");
+        preventTheOther = true;
     }
-    else if (XoBool == true && Case1or2Bool == false) {
-        playerOneO.classList.remove("hidden");
-        playerTwoX.classList.remove("hidden");
+    else if(whoStarts == false) {
+        symbolSwitchBool = true;
+        player1.setAttribute("style", "text-decoration: " + "none");
+        player2.setAttribute("style", "text-decoration: " + "underline");
+        preventTheOther = false;
     }
 }
 
-function hideXO(firstLetter: HTMLElement, secondLetter: HTMLElement) {
-    firstLetter.classList.add("hidden");
-    secondLetter.classList.add("hidden");
+function clearOpacity(x: string, o: string): void {
+    document.querySelector(x).setAttribute("style", "opacity: " + 0);
+    document.querySelector(o).setAttribute("style", "opacity: " + 0);
 }
