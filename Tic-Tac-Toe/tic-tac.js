@@ -5,6 +5,7 @@ var player2 = document.getElementById("player2");
 var symbolSwitchBool = false;
 var whoStarts = true;
 var preventTheOther = true;
+var newGame = false;
 //Check-if-already-checked-array:
 var checkArray = [];
 checkArray[1] = true;
@@ -67,7 +68,12 @@ document.querySelector('#kachel9').addEventListener("click", function () {
 });
 //Restart
 document.querySelector('#restart').addEventListener("click", function () {
-    nextGame();
+    if (newGame == true) {
+        nextGame();
+    }
+    else {
+        restartGame();
+    }
 });
 function changeOpacity(x, o, i) {
     if (symbolSwitchBool == false && checkArray[i] == true) {
@@ -131,6 +137,24 @@ function clearOpacity(x, o) {
     document.querySelector(x).setAttribute("style", "opacity: " + 0);
     document.querySelector(o).setAttribute("style", "opacity: " + 0);
 }
+//Restart:
+function restartGame() {
+    clearOpacity("#x1", "#o1");
+    clearOpacity("#x2", "#o2");
+    clearOpacity("#x3", "#o3");
+    clearOpacity("#x4", "#o4");
+    clearOpacity("#x5", "#o5");
+    clearOpacity("#x6", "#o6");
+    clearOpacity("#x7", "#o7");
+    clearOpacity("#x8", "#o8");
+    clearOpacity("#x9", "#o9");
+    for (index = 1; index <= 9; index++) {
+        player1Wins[index] = false;
+        player2Wins[index] = false;
+        checkArray[index] = true;
+    }
+}
+//Win Detector:
 var indexEndGame;
 function detectWinner() {
     if (player1Wins[1] == true && player1Wins[2] == true && player1Wins[3] == true) {
@@ -140,6 +164,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[4] == true && player1Wins[5] == true && player1Wins[6] == true) {
         document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#66ff66");
@@ -148,6 +173,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[7] == true && player1Wins[8] == true && player1Wins[9] == true) {
         document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#66ff66");
@@ -156,6 +182,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[1] == true && player1Wins[4] == true && player1Wins[7] == true) {
         document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
@@ -164,6 +191,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[2] == true && player1Wins[5] == true && player1Wins[8] == true) {
         document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#66ff66");
@@ -172,6 +200,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[3] == true && player1Wins[6] == true && player1Wins[9] == true) {
         document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
@@ -180,6 +209,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[1] == true && player1Wins[5] == true && player1Wins[9] == true) {
         document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
@@ -188,6 +218,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
     else if (player1Wins[3] == true && player1Wins[5] == true && player1Wins[7] == true) {
         document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
@@ -196,6 +227,7 @@ function detectWinner() {
         for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
+        newGame = true;
     }
 }
 //kachel-Farbe zurücksetzen:
