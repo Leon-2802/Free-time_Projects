@@ -1,11 +1,19 @@
 //Player 1 und Player 2:
 var player1 = document.getElementById("player1");
 var player2 = document.getElementById("player2");
+var score1 = document.getElementById("score1");
+var score2 = document.getElementById("score2");
 //Bools:
 var symbolSwitchBool = false;
 var whoStarts = true;
 var preventTheOther = true;
 var newGame = false;
+var countAWin = false;
+var countForP1 = false;
+var countForP2 = false;
+//Sieg-Counter:
+var winCounter1 = 0;
+var winCounter2 = 0;
 //Check-if-already-checked-array:
 var checkArray = [];
 checkArray[1] = true;
@@ -69,6 +77,10 @@ document.querySelector('#kachel9').addEventListener("click", function () {
 //Restart
 document.querySelector('#restart').addEventListener("click", function () {
     if (newGame == true) {
+        countAWin = true;
+        nextGame();
+    }
+    else if (checkArray[1] == false && checkArray[2] == false && checkArray[3] == false && checkArray[4] == false && checkArray[5] == false && checkArray[6] == false && checkArray[7] == false && checkArray[8] == false && checkArray[9] == false) {
         nextGame();
     }
     else {
@@ -88,7 +100,8 @@ function changeOpacity(x, o, i) {
         checkArray[i] = false;
         player2Wins[i] = true;
     }
-    detectWinner();
+    detectWinnerP1();
+    detectWinnerP2();
 }
 var index;
 function nextGame() {
@@ -118,6 +131,19 @@ function nextGame() {
         whoStarts = true;
     }
     changeStarter();
+    //Siegpunkt aufaddieren:
+    if (countAWin == true && countForP1 == true) {
+        winCounter1++;
+        refreshScore();
+        countAWin = false;
+    }
+    else if (countAWin == true && countForP2 == true) {
+        winCounter2++;
+        refreshScore();
+        countAWin = false;
+    }
+    //newGame var zurücksetzen:
+    newGame = false;
 }
 function changeStarter() {
     if (whoStarts == true) {
@@ -137,6 +163,16 @@ function clearOpacity(x, o) {
     document.querySelector(x).setAttribute("style", "opacity: " + 0);
     document.querySelector(o).setAttribute("style", "opacity: " + 0);
 }
+function refreshScore() {
+    if (countForP1 == true) {
+        score1.innerHTML = winCounter1 + "points";
+        countForP1 = false;
+    }
+    else if (countForP2 == true) {
+        score2.innerHTML = winCounter2 + "points";
+        countForP2 = false;
+    }
+}
 //Restart:
 function restartGame() {
     clearOpacity("#x1", "#o1");
@@ -153,10 +189,17 @@ function restartGame() {
         player2Wins[index] = false;
         checkArray[index] = true;
     }
+    //Schauen, dass der richtige Player wieder beginnt:
+    if (preventTheOther == true) {
+        symbolSwitchBool = false;
+    }
+    else if (preventTheOther == false) {
+        symbolSwitchBool = true;
+    }
 }
-//Win Detector:
+//Win Detector Player 1:
 var indexEndGame;
-function detectWinner() {
+function detectWinnerP1() {
     if (player1Wins[1] == true && player1Wins[2] == true && player1Wins[3] == true) {
         document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
         document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#66ff66");
@@ -165,6 +208,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[4] == true && player1Wins[5] == true && player1Wins[6] == true) {
         document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#66ff66");
@@ -174,6 +222,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[7] == true && player1Wins[8] == true && player1Wins[9] == true) {
         document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#66ff66");
@@ -183,6 +236,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[1] == true && player1Wins[4] == true && player1Wins[7] == true) {
         document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
@@ -192,6 +250,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[2] == true && player1Wins[5] == true && player1Wins[8] == true) {
         document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#66ff66");
@@ -201,6 +264,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[3] == true && player1Wins[6] == true && player1Wins[9] == true) {
         document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
@@ -210,6 +278,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[1] == true && player1Wins[5] == true && player1Wins[9] == true) {
         document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
@@ -219,6 +292,11 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
     else if (player1Wins[3] == true && player1Wins[5] == true && player1Wins[7] == true) {
         document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
@@ -228,6 +306,126 @@ function detectWinner() {
             checkArray[indexEndGame] = false;
         }
         newGame = true;
+        countAWin = true;
+        countForP1 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+}
+// Detect Winner Player 2
+function detectWinnerP2() {
+    if (player2Wins[1] == true && player2Wins[2] == true && player2Wins[3] == true) {
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[4] == true && player2Wins[5] == true && player2Wins[6] == true) {
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[7] == true && player2Wins[8] == true && player2Wins[9] == true) {
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[1] == true && player2Wins[4] == true && player2Wins[7] == true) {
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[2] == true && player2Wins[5] == true && player2Wins[8] == true) {
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[3] == true && player2Wins[6] == true && player2Wins[9] == true) {
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[1] == true && player2Wins[5] == true && player2Wins[9] == true) {
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
+    }
+    else if (player2Wins[3] == true && player2Wins[5] == true && player2Wins[7] == true) {
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
+        for (indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
+            checkArray[indexEndGame] = false;
+        }
+        newGame = true;
+        countAWin = true;
+        countForP2 = true;
+        setTimeout(function () {
+            nextGame();
+        }, 1500);
     }
 }
 //kachel-Farbe zurücksetzen:

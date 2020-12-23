@@ -7,12 +7,11 @@ body {
     display: flex;
     height: 1000px;
     justify-content: center;
-    align-items: center;
 }
 
 .game-box {
     width: 650px;
-    height: 810px;
+    height: 775px;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
