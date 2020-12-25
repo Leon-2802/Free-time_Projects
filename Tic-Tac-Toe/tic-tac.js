@@ -165,11 +165,11 @@ function clearOpacity(x, o) {
 }
 function refreshScore() {
     if (countForP1 == true) {
-        score1.innerHTML = winCounter1 + "points";
+        score1.innerHTML = winCounter1 + "wins";
         countForP1 = false;
     }
     else if (countForP2 == true) {
-        score2.innerHTML = winCounter2 + "points";
+        score2.innerHTML = winCounter2 + "wins";
         countForP2 = false;
     }
 }

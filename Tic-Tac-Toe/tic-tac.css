@@ -1,15 +1,31 @@
 html {
     height: 1000px;
+    font-family: monospace;
 }
 
 body {
-    background-color: blanchedalmond;
+    background-image: url(https://cutewallpaper.org/21/retro-wave-wallpaper/Retrowave-Outrun-Mountains-Night-HD-Artist-4k-Wallpapers-.jpg);
+    background-attachment: fixed;
+    background-size: cover;
     display: flex;
-    height: 1000px;
+    height: 100%;
     justify-content: center;
 }
 
+p{
+    color: #4D94BA;
+    position: absolute;
+    font-size: 20px;
+}
+#win-counter-p1 {
+    margin-right: 1000px;
+}
+#win-counter-p2 {
+    margin-left: 1000px;
+}
+
 .game-box {
+    margin-top: 50px;
     width: 650px;
     height: 775px;
     display: flex;
@@ -19,7 +35,7 @@ body {
 }
 
 .kachel {
-    background-color: gray;
+    background-color: #4D94BA;
     width: 200px;
     height: 200px;
     border-radius: 5%;
@@ -41,10 +57,14 @@ body {
 }
 
 #player1 {
-    color: #66ff66;
+    color: #FF901F;
     text-decoration: underline;
 }
 #player2 {
-    color: red;
+    color: #FF00AD;
     text-decoration: none;
+}
+
+h2 {
+    color: white;
 }
