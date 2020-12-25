@@ -3,6 +3,7 @@ const player1:HTMLElement = document.getElementById("player1");
 const player2:HTMLElement = document.getElementById("player2");
 const score1:HTMLElement = document.getElementById("score1");
 const score2:HTMLElement = document.getElementById("score2");
+const nextGameButton:HTMLElement = document.getElementById("nextOne");
 //Bools:
 let symbolSwitchBool: boolean = false;
 let whoStarts: boolean = true;
@@ -82,16 +83,11 @@ document.querySelector('#kachel9').addEventListener("click", function() {
 
 //Restart
 document.querySelector('#restart').addEventListener("click", function() {
-    if(newGame == true) {
-        countAWin = true;
-        nextGame();
-    }
-    else if(checkArray[1] == false && checkArray[2] == false && checkArray[3] == false && checkArray[4] == false && checkArray[5] == false && checkArray[6] == false && checkArray[7] == false && checkArray[8] == false && checkArray[9] == false) {
-        nextGame();
-    }
-    else {
         restartGame();
-    }
+});
+//Next Game
+nextGameButton.addEventListener("click", function(): void {
+    nextGame();
 });
 
 function changeOpacity(x: string, o: string, i: number): void {
@@ -125,7 +121,7 @@ function nextGame(): void {
     clearOpacity("#x9", "#o9");
 
     //Farbe zurücksetzen:
-    resestToGray();
+    resestToDefault();
 
     //Arrays zurücksetzen:
     for(index = 1; index <= 9; index++) {
@@ -180,11 +176,11 @@ function clearOpacity(x: string, o: string): void {
 
 function refreshScore(): void {
     if(countForP1 == true) {
-        score1.innerHTML = winCounter1 + "wins";
+        score1.innerHTML = winCounter1 + " wins";
         countForP1 = false;
     }
     else if (countForP2 == true) {
-        score2.innerHTML = winCounter2 + "wins";
+        score2.innerHTML = winCounter2 + " wins";
         countForP2 = false;
     }
 }
@@ -221,9 +217,9 @@ function restartGame(): void {
 var indexEndGame: number;
 function detectWinnerP1(): void {
     if (player1Wins[1] == true && player1Wins[2] == true && player1Wins[3] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -235,9 +231,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[4] == true && player1Wins[5] == true && player1Wins[6] == true) {
-        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -249,9 +245,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[7] == true && player1Wins[8] == true && player1Wins[9] == true) {
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -263,9 +259,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[1] == true && player1Wins[4] == true && player1Wins[7] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -277,9 +273,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[2] == true && player1Wins[5] == true && player1Wins[8] == true) {
-        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -291,9 +287,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[3] == true && player1Wins[6] == true && player1Wins[9] == true) {
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -305,9 +301,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[1] == true && player1Wins[5] == true && player1Wins[9] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -319,9 +315,9 @@ function detectWinnerP1(): void {
         }, 1500);
     }
     else if (player1Wins[3] == true && player1Wins[5] == true && player1Wins[7] == true) {
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#66ff66");
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#66ff66");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -337,9 +333,9 @@ function detectWinnerP1(): void {
 // Detect Winner Player 2
 function detectWinnerP2(): void {
     if (player2Wins[1] == true && player2Wins[2] == true && player2Wins[3] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -351,9 +347,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[4] == true && player2Wins[5] == true && player2Wins[6] == true) {
-        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -365,9 +361,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[7] == true && player2Wins[8] == true && player2Wins[9] == true) {
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -379,9 +375,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[1] == true && player2Wins[4] == true && player2Wins[7] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel4").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -393,9 +389,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[2] == true && player2Wins[5] == true && player2Wins[8] == true) {
-        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel2").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel8").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -407,9 +403,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[3] == true && player2Wins[6] == true && player2Wins[9] == true) {
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel6").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -421,9 +417,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[1] == true && player2Wins[5] == true && player2Wins[9] == true) {
-        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel1").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel9").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -435,9 +431,9 @@ function detectWinnerP2(): void {
         }, 1500);
     }
     else if (player2Wins[3] == true && player2Wins[5] == true && player2Wins[7] == true) {
-        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "red");
-        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "red");
+        document.querySelector("#kachel3").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel5").setAttribute("style", "background-color: " + "#ffb3ff");
+        document.querySelector("#kachel7").setAttribute("style", "background-color: " + "#ffb3ff");
         for(indexEndGame = 1; indexEndGame <= 9; indexEndGame++) {
             checkArray[indexEndGame] = false;
         }
@@ -464,8 +460,8 @@ resetColors[9] = "#kachel9";
 
 var colorIndex: number;
 
-function resestToGray(): void {
+function resestToDefault(): void {
     for(colorIndex = 1; colorIndex <= 9; colorIndex++) {
-        document.querySelector(resetColors[colorIndex]).setAttribute("style", "background-color: " + "gray");
+        document.querySelector(resetColors[colorIndex]).setAttribute("style", "background-color: " + "rgba(255, 179, 179, 0.3)");
     }
 }
