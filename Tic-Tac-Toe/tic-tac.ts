@@ -4,6 +4,10 @@ const player2:HTMLElement = document.getElementById("player2");
 const score1:HTMLElement = document.getElementById("score1");
 const score2:HTMLElement = document.getElementById("score2");
 const nextGameButton:HTMLElement = document.getElementById("nextOne");
+//Sounds:
+const beat:HTMLAudioElement = new Audio("./audio/Aerotrancer - Cosmos (Synthwave Rework) (1).mp3");
+beat.play();
+beat.volume = 0.1;
 //Bools:
 let symbolSwitchBool: boolean = false;
 let whoStarts: boolean = true;
