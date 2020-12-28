@@ -23,6 +23,19 @@ h1:hover {
     color: #ff3333;
 }
 
+#sound-off{
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    left: 330px;
+    top: 570px;
+    opacity: 40%;
+}
+#sound-off:hover {
+    cursor: pointer;
+    opacity: 100%;
+}
+
 p{
     color: #4D94BA;
     position: absolute;
@@ -67,10 +80,13 @@ p{
 
 #restart {
     position: relative;
-    opacity: 70%;
+    -webkit-transition: -webkit-transform .8s ease-in-out;
+    transition:         transform .8s ease-in-out;
 }
 #restart:hover {
     cursor: pointer;
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 
 #player1 {
