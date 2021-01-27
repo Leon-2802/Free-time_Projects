@@ -5,9 +5,15 @@ const score1:HTMLElement = document.getElementById("score1");
 const score2:HTMLElement = document.getElementById("score2");
 const nextGameButton:HTMLElement = document.getElementById("nextOne");
 //Sounds:
+let beatPlays: boolean = false;
 const backgroundBeat:HTMLAudioElement = new Audio("audio/Aerotrancer - Cosmos (Synthwave Rework) (1).mp3");
-backgroundBeat.play();
-backgroundBeat.volume = 0.02;
+document.addEventListener("click", function(): void {
+    if (beatPlays == false) {
+        backgroundBeat.play();
+        backgroundBeat.volume = 0.05;
+        beatPlays = true;
+    }
+});
 const clickSound:HTMLAudioElement = new Audio("audio/win1.wav");
 clickSound.volume = 0.2;
 const winPlayer1:HTMLAudioElement = new Audio("audio/click.mp3");
