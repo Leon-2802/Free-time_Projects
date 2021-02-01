@@ -43,9 +43,6 @@ checkArray[6] = true;
 checkArray[7] = true;
 checkArray[8] = true;
 checkArray[9] = true;
-checkArray.pop();
-checkArray.shift();
-checkArray = [];
 //Player1 Sieg Array:
 var player1Wins = [];
 player1Wins[1] = false;
